@@ -11,15 +11,7 @@ use ark_std::{cfg_into_iter, cfg_iter, cfg_iter_mut, vec};
 /// in that domain. This serves as HZ when computing the C proof element.
 pub struct CircomReduction;
 
-impl R1CSToQAP for CircomReduction {
-    #[allow(clippy::type_complexity)]
-    fn instance_map_with_evaluation<F: PrimeField, D: EvaluationDomain<F>>(
-        cs: ConstraintSystemRef<F>,
-        t: &F,
-    ) -> Result<(Vec<F>, Vec<F>, Vec<F>, F, usize, usize), SynthesisError> {
-        LibsnarkReduction::instance_map_with_evaluation::<F, D>(cs, t)
-    }
-
+impl CircomReduction {
     fn witness_map_from_matrices<F: PrimeField, D: EvaluationDomain<F>>(
         matrices: &ConstraintMatrices<F>,
         num_inputs: usize,
